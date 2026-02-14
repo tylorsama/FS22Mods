@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+    Bugatti Chiron W16 - Vehicle Configuration
+    Based on real-world factory specifications:
+      Engine: 7,993cc quad-turbo W16, 1500 PS / 1600 Nm
+      Trans:  7-speed dual-clutch DCT, AWD
+      Weight: 1,995 kg (dry)
+      Tires:  Front 285/30 R20, Rear 355/25 R21
+-->
+<vehicle type="bugattiChiron">
+    <storeData>
+        <name>$l10n_chiron_name</name>
+        <image>store/bugattiChiron.png</image>
+        <price>2800000</price>
+        <lifetime>600</lifetime>
+        <brand>BUGATTI</brand>
+        <category>cars</category>
+        <specs>
+            <power>1500</power>
+            <maxSpeed>420</maxSpeed>
+        </specs>
+        <functions>
+            <function>$l10n_chiron_function</function>
+        </functions>
+    </storeData>
+
+    <base>
+        <filename>vehicles/bugattiChiron.i3d</filename>
+        <typeDesc>$l10n_chiron_typeDesc</typeDesc>
+        <speedLimit value="420" />
+        <components>
+            <!-- Real curb weight: 1,995 kg; centerOfMass low for supercar handling -->
+            <component centerOfMass="0 0.35 0.1" mass="1995"
+                       solverIterationCount="30" />
+        </components>
+    </base>
+
+    <motorized>
+        <motorConfigurations>
+            <!-- W16 Quad-Turbo: 1,500 PS @ 6,700 RPM / 1,600 Nm @ 2,000-6,000 RPM -->
+            <motorConfiguration name="$l10n_chiron_motor_w16" hp="1500"
+                                price="0">
+                <motor torqueScale="1.0"
+                       minRpm="800"
+                       maxRpm="6700"
+                       maxForwardSpeed="420"
+                       maxBackwardSpeed="15"
+                       brakeForce="12"
+                       lowBrakeForceScale="0.3"
+                       lowBrakeForceSpeedLimit="0.01"
+                       torqueCurve="0.00 0.65 | 0.15 0.80 | 0.30 0.95 | 0.45 1.00 | 0.60 1.00 | 0.75 0.98 | 0.85 0.95 | 1.00 0.85"
+                       ptoMotorRpmRatio="4.0" />
+                <!-- 7-speed dual-clutch transmission -->
+                <transmission name="$l10n_chiron_trans_7dct"
+                              autoGearChangeTime="0.08"
+                              gearChangeTime="0.05"
+                              directionChangeUseGroup="true"
+                              directionChangeTime="0.5">
+                    <forwardGear ratio="3.56" maxSpeed="65" />
+                    <forwardGear ratio="2.31" maxSpeed="105" />
+                    <forwardGear ratio="1.60" maxSpeed="160" />
+                    <forwardGear ratio="1.18" maxSpeed="220" />
+                    <forwardGear ratio="0.93" maxSpeed="295" />
+                    <forwardGear ratio="0.78" maxSpeed="370" />
+                    <forwardGear ratio="0.65" maxSpeed="420" />
+                    <reverseGear ratio="3.56" maxSpeed="15" />
+                </transmission>
+                <objectChange node="exhaustParticle1" visibilityActive="true" visibilityInactive="false" />
+            </motorConfiguration>
+        </motorConfigurations>
+
+        <consumerConfigurations>
+            <consumerConfiguration>
+                <!-- 100L fuel tank, high consumption for W16 (22.5 L/100km) -->
+                <consumer fillType="DIESEL" usage="22.5" capacity="100" />
+            </consumerConfiguration>
+        </consumerConfigurations>
+
+        <exhaustParticleSystems>
+            <exhaustParticleSystem node="exhaustLeft" />
+            <exhaustParticleSystem node="exhaustRight" />
+        </exhaustParticleSystems>
+
+        <sounds>
+            <engine file="sounds/engine.ogg" linkNode="engineSoundNode"
+                    innerRadius="5" outerRadius="80"
+                    pitchScale="1.0" volumeScale="1.0">
+                <pitch>
+                    <key rpm="800" pitch="0.6" />
+                    <key rpm="2000" pitch="0.8" />
+                    <key rpm="4000" pitch="1.0" />
+                    <key rpm="6000" pitch="1.2" />
+                    <key rpm="6700" pitch="1.35" />
+                </pitch>
+                <volume>
+                    <key rpm="800" volume="0.5" />
+                    <key rpm="2000" volume="0.65" />
+                    <key rpm="4000" volume="0.85" />
+                    <key rpm="6000" volume="1.0" />
+                    <key rpm="6700" volume="1.0" />
+                </volume>
+            </engine>
+        </sounds>
+    </motorized>
+
+    <drivable>
+        <steeringWheel node="steeringWheel" indoorRotation="0 0 -450" outdoorRotation="0 0 -450" />
+    </drivable>
+
+    <enterable>
+        <cameras>
+            <!-- Interior camera - low supercar cockpit position -->
+            <camera node="cameraIndoor" rotatable="true"
+                    isInside="true" fov="75"
+                    rotMinX="-15" rotMaxX="15"
+                    transMin="-0.1 0 -0.1" transMax="0.1 0 0.1" />
+            <!-- Exterior chase camera -->
+            <camera node="cameraOutdoor" rotatable="true"
+                    isInside="false" fov="60"
+                    rotMinX="-30" rotMaxX="60"
+                    distance="6" />
+        </cameras>
+        <characterNode node="playerSeat" />
+    </enterable>
+
+    <fillUnit>
+        <fillUnitConfigurations>
+            <fillUnitConfiguration>
+                <fillUnits>
+                    <!-- 100L fuel tank (real Chiron spec) -->
+                    <fillUnit fillTypes="DIESEL" capacity="100"
+                              showOnHud="true" />
+                </fillUnits>
+            </fillUnitConfiguration>
+        </fillUnitConfigurations>
+    </fillUnit>
+
+    <wheels autoRotateBackSpeed="3.0">
+        <!--
+            Real tires:
+            Front: 285/30 R20 => radius ~0.336m, width 0.285m
+            Rear:  355/25 R21 => radius ~0.355m, width 0.355m
+        -->
+        <!-- Front left -->
+        <wheel node="wheelFrontLeft" driveNode="wheelDriveFrontLeft"
+               radius="0.336" width="0.285" mass="15"
+               tireType="street" hasTireTracks="true"
+               hasParticles="true"
+               restLoad="4.5" maxLateralStiffness="40"
+               maxLongStiffness="40" />
+        <!-- Front right -->
+        <wheel node="wheelFrontRight" driveNode="wheelDriveFrontRight"
+               radius="0.336" width="0.285" mass="15"
+               tireType="street" hasTireTracks="true"
+               hasParticles="true"
+               restLoad="4.5" maxLateralStiffness="40"
+               maxLongStiffness="40" />
+        <!-- Rear left -->
+        <wheel node="wheelRearLeft" driveNode="wheelDriveRearLeft"
+               radius="0.355" width="0.355" mass="18"
+               tireType="street" hasTireTracks="true"
+               hasParticles="true"
+               restLoad="6.0" maxLateralStiffness="50"
+               maxLongStiffness="50" />
+        <!-- Rear right -->
+        <wheel node="wheelRearRight" driveNode="wheelDriveRearRight"
+               radius="0.355" width="0.355" mass="18"
+               tireType="street" hasTireTracks="true"
+               hasParticles="true"
+               restLoad="6.0" maxLateralStiffness="50"
+               maxLongStiffness="50" />
+    </wheels>
+
+    <lights>
+        <realLights>
+            <!-- Headlights -->
+            <light node="headlightLeft" lightTypes="0" />
+            <light node="headlightRight" lightTypes="0" />
+            <!-- Tail / brake lights -->
+            <light node="taillightLeft" lightTypes="1 2" />
+            <light node="taillightRight" lightTypes="1 2" />
+            <!-- Reverse lights -->
+            <light node="reverseLightLeft" lightTypes="3" />
+            <light node="reverseLightRight" lightTypes="3" />
+            <!-- Turn signals -->
+            <light node="turnSignalFrontLeft" lightTypes="5" />
+            <light node="turnSignalFrontRight" lightTypes="6" />
+            <light node="turnSignalRearLeft" lightTypes="5" />
+            <light node="turnSignalRearRight" lightTypes="6" />
+        </realLights>
+    </lights>
+
+    <!-- i3dMappings: node IDs map to positions in the i3d scene graph.
+         These MUST be updated to match the actual exported i3d file. -->
+    <i3dMappings>
+        <!-- Wheels -->
+        <i3dMapping id="wheelFrontLeft" node="0>1|0" />
+        <i3dMapping id="wheelFrontRight" node="0>1|1" />
+        <i3dMapping id="wheelRearLeft" node="0>1|2" />
+        <i3dMapping id="wheelRearRight" node="0>1|3" />
+        <i3dMapping id="wheelDriveFrontLeft" node="0>1|0|0" />
+        <i3dMapping id="wheelDriveFrontRight" node="0>1|1|0" />
+        <i3dMapping id="wheelDriveRearLeft" node="0>1|2|0" />
+        <i3dMapping id="wheelDriveRearRight" node="0>1|3|0" />
+        <!-- Interior -->
+        <i3dMapping id="steeringWheel" node="0>2|0" />
+        <i3dMapping id="playerSeat" node="0>2|1" />
+        <!-- Cameras -->
+        <i3dMapping id="cameraIndoor" node="0>3|0" />
+        <i3dMapping id="cameraOutdoor" node="0>3|1" />
+        <!-- Exhaust -->
+        <i3dMapping id="exhaustLeft" node="0>4|0" />
+        <i3dMapping id="exhaustRight" node="0>4|1" />
+        <i3dMapping id="exhaustParticle1" node="0>4|2" />
+        <!-- Engine sound -->
+        <i3dMapping id="engineSoundNode" node="0>5|0" />
+        <!-- Lights -->
+        <i3dMapping id="headlightLeft" node="0>6|0" />
+        <i3dMapping id="headlightRight" node="0>6|1" />
+        <i3dMapping id="taillightLeft" node="0>6|2" />
+        <i3dMapping id="taillightRight" node="0>6|3" />
+        <i3dMapping id="reverseLightLeft" node="0>6|4" />
+        <i3dMapping id="reverseLightRight" node="0>6|5" />
+        <i3dMapping id="turnSignalFrontLeft" node="0>6|6" />
+        <i3dMapping id="turnSignalFrontRight" node="0>6|7" />
+        <i3dMapping id="turnSignalRearLeft" node="0>6|8" />
+        <i3dMapping id="turnSignalRearRight" node="0>6|9" />
+    </i3dMappings>
+</vehicle>

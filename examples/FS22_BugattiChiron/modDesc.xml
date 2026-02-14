@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="79">
+    <author>FS22Mods</author>
+    <version>1.0.0.0</version>
+
+    <title>
+        <en>Bugatti Chiron W16</en>
+        <de>Bugatti Chiron W16</de>
+        <fr>Bugatti Chiron W16</fr>
+    </title>
+
+    <description>
+        <en><![CDATA[Bugatti Chiron W16 supercar for Farming Simulator 22.
+
+1,500 PS quad-turbo W16 engine, 7-speed dual-clutch, AWD.
+Top speed 420 km/h (electronically limited).
+0-100 km/h in 2.4 seconds.
+
+Features:
+- Realistic performance based on factory specifications
+- Two drive modes: Road (380 km/h) and Top Speed (420 km/h)
+- Press V to toggle speed limiter mode
+- HUD showing current mode, speed, and RPM
+
+3D model required: See ASSETS.md for free CC-BY model sources.]]></en>
+        <de><![CDATA[Bugatti Chiron W16 Supersportwagen fuer Farming Simulator 22.
+
+1.500 PS Quad-Turbo W16 Motor, 7-Gang Doppelkupplung, AWD.
+Hoechstgeschwindigkeit 420 km/h (elektronisch begrenzt).
+0-100 km/h in 2,4 Sekunden.
+
+Funktionen:
+- Realistische Leistung basierend auf Werksspezifikationen
+- Zwei Fahrmodi: Strasse (380 km/h) und Top Speed (420 km/h)
+- V druecken zum Umschalten des Geschwindigkeitsbegrenzers
+- HUD mit aktuellem Modus, Geschwindigkeit und Drehzahl]]></de>
+        <fr><![CDATA[Bugatti Chiron W16 supercar pour Farming Simulator 22.
+
+1 500 ch moteur W16 quad-turbo, boite 7 vitesses double embrayage, AWD.
+Vitesse maximale 420 km/h (limitee electroniquement).
+0-100 km/h en 2,4 secondes.]]></fr>
+    </description>
+
+    <iconFilename>icon.dds</iconFilename>
+    <multiplayer supported="true" />
+
+    <storeItems>
+        <storeItem xmlFilename="vehicles/bugattiChiron.xml" />
+    </storeItems>
+
+    <extraSourceFiles>
+        <sourceFile filename="scripts/register.lua" />
+    </extraSourceFiles>
+
+    <specializations>
+        <specialization name="chironFeatures"
+                        className="ChironFeatures"
+                        filename="scripts/ChironFeatures.lua" />
+    </specializations>
+
+    <vehicleTypes>
+        <type name="bugattiChiron" parent="baseDrivable"
+              filename="$dataS/scripts/vehicles/Vehicle.lua">
+            <specialization name="chironFeatures" />
+        </type>
+    </vehicleTypes>
+
+    <actions>
+        <action name="CHIRON_TOGGLE_MODE" category="VEHICLE" />
+    </actions>
+    <inputBinding>
+        <actionBinding action="CHIRON_TOGGLE_MODE">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_v" />
+        </actionBinding>
+    </inputBinding>
+
+    <l10n filenamePrefix="l10n/l10n" />
+</modDesc>

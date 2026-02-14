@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+    <texts>
+        <text name="chiron_name" text="Bugatti Chiron W16" />
+        <text name="chiron_function" text="Supersportwagen" />
+        <text name="chiron_typeDesc" text="Supersportwagen" />
+        <text name="chiron_motor_w16" text="8,0L W16 Quad-Turbo (1.500 PS)" />
+        <text name="chiron_trans_7dct" text="7-Gang Doppelkupplung (DCT)" />
+        <text name="chiron_mode_road" text="STRASSENMODUS" />
+        <text name="chiron_mode_topspeed" text="TOP SPEED MODUS" />
+        <text name="chiron_action_toggleMode" text="Fahrmodus umschalten" />
+    </texts>
+</l10n>
