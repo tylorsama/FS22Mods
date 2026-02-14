@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="79">
+    <author>{{AUTHOR}}</author>
+    <version>1.0.0.0</version>
+
+    <title>
+        <en>{{TITLE_EN}}</en>
+        <de>{{TITLE_DE}}</de>
+    </title>
+
+    <description>
+        <en><![CDATA[{{DESCRIPTION_EN}}]]></en>
+        <de><![CDATA[{{DESCRIPTION_DE}}]]></de>
+    </description>
+
+    <iconFilename>icon.dds</iconFilename>
+    <multiplayer supported="true" />
+
+    <storeItems>
+        <storeItem xmlFilename="vehicles/{{VEHICLE_NAME}}.xml" />
+    </storeItems>
+
+    <l10n filenamePrefix="l10n/l10n" />
+</modDesc>

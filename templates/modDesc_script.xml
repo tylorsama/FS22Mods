@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="79">
+    <author>{{AUTHOR}}</author>
+    <version>1.0.0.0</version>
+
+    <title>
+        <en>{{TITLE_EN}}</en>
+        <de>{{TITLE_DE}}</de>
+    </title>
+
+    <description>
+        <en><![CDATA[{{DESCRIPTION_EN}}]]></en>
+        <de><![CDATA[{{DESCRIPTION_DE}}]]></de>
+    </description>
+
+    <iconFilename>icon.dds</iconFilename>
+    <multiplayer supported="true" />
+
+    <extraSourceFiles>
+        <sourceFile filename="scripts/main.lua" />
+    </extraSourceFiles>
+
+    <!-- Uncomment if adding a specialization to existing vehicles -->
+    <!--
+    <specializations>
+        <specialization name="{{SPEC_NAME}}"
+                        className="{{SPEC_CLASS}}"
+                        filename="scripts/{{SPEC_CLASS}}.lua" />
+    </specializations>
+    -->
+
+    <!-- Uncomment if adding input bindings -->
+    <!--
+    <actions>
+        <action name="{{ACTION_NAME}}" category="VEHICLE" />
+    </actions>
+    <inputBinding>
+        <actionBinding action="{{ACTION_NAME}}">
+            <binding device="KB_MOUSE_DEFAULT" input="{{KEY_BINDING}}" />
+        </actionBinding>
+    </inputBinding>
+    -->
+
+    <l10n filenamePrefix="l10n/l10n" />
+</modDesc>

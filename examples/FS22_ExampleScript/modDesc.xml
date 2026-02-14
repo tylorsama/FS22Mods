@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="79">
+    <author>FS22Mods</author>
+    <version>1.0.0.0</version>
+
+    <title>
+        <en>Speed Display</en>
+        <de>Geschwindigkeitsanzeige</de>
+    </title>
+
+    <description>
+        <en><![CDATA[Displays the current vehicle speed in large text on the HUD.
+Press O to toggle the display on or off.]]></en>
+        <de><![CDATA[Zeigt die aktuelle Fahrzeuggeschwindigkeit als grossen Text im HUD an.
+Druecken Sie O zum Ein-/Ausschalten.]]></de>
+    </description>
+
+    <iconFilename>icon.png</iconFilename>
+    <multiplayer supported="true" />
+
+    <extraSourceFiles>
+        <sourceFile filename="scripts/register.lua" />
+    </extraSourceFiles>
+
+    <specializations>
+        <specialization name="speedDisplay"
+                        className="SpeedDisplay"
+                        filename="scripts/SpeedDisplay.lua" />
+    </specializations>
+
+    <actions>
+        <action name="TOGGLE_SPEED_DISPLAY" category="VEHICLE" />
+    </actions>
+    <inputBinding>
+        <actionBinding action="TOGGLE_SPEED_DISPLAY">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_o" />
+        </actionBinding>
+    </inputBinding>
+
+    <l10n filenamePrefix="l10n/l10n" />
+</modDesc>

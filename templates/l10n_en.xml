@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<l10n>
+    <!-- Add your localization entries here -->
+    <!-- Reference in Lua: g_i18n:getText("key_name") -->
+    <!-- Reference in XML: $l10n_key_name -->
+
+    <texts>
+        <text name="{{MOD_PREFIX}}_modTitle" text="{{TITLE_EN}}" />
+    </texts>
+</l10n>

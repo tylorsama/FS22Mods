@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<placeable type="productionPoint">
+    <storeData>
+        <name>{{PRODUCTION_DISPLAY_NAME}}</name>
+        <image>store/{{PRODUCTION_NAME}}.png</image>
+        <price>{{PRICE}}</price>
+        <lifetime>1200</lifetime>
+        <category>productionPoints</category>
+        <rotation>0</rotation>
+    </storeData>
+
+    <base>
+        <filename>placeables/{{PRODUCTION_NAME}}.i3d</filename>
+    </base>
+
+    <placement>
+        <testAreas>
+            <testArea startNode="testAreaStart" endNode="testAreaEnd" />
+        </testAreas>
+    </placement>
+
+    <productionPoint>
+        <productions>
+            <production id="{{PRODUCTION_ID}}"
+                        name="{{PRODUCTION_RECIPE_NAME}}"
+                        cyclesPerHour="{{CYCLES_PER_HOUR}}"
+                        costsPerActiveHour="{{COST_PER_HOUR}}">
+                <inputs>
+                    <input fillType="{{INPUT_FILL_TYPE}}" amount="{{INPUT_AMOUNT}}" />
+                </inputs>
+                <outputs>
+                    <output fillType="{{OUTPUT_FILL_TYPE}}" amount="{{OUTPUT_AMOUNT}}" />
+                </outputs>
+            </production>
+        </productions>
+
+        <storage capacityPerFillType="{{STORAGE_CAPACITY}}">
+            <fillType name="{{INPUT_FILL_TYPE}}" />
+            <fillType name="{{OUTPUT_FILL_TYPE}}" />
+        </storage>
+
+        <unloadingStation>
+            <unloadTrigger node="unloadTriggerNode">
+                <fillTypes>
+                    <fillType name="{{INPUT_FILL_TYPE}}" />
+                </fillTypes>
+            </unloadTrigger>
+        </unloadingStation>
+
+        <loadingStation>
+            <loadTrigger node="loadTriggerNode"
+                         fillTypes="{{OUTPUT_FILL_TYPE}}" />
+        </loadingStation>
+    </productionPoint>
+
+    <i3dMappings>
+        <i3dMapping id="testAreaStart" node="0>0" />
+        <i3dMapping id="testAreaEnd" node="0>1" />
+        <i3dMapping id="unloadTriggerNode" node="0>2" />
+        <i3dMapping id="loadTriggerNode" node="0>3" />
+    </i3dMappings>
+</placeable>

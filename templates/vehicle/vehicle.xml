@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<vehicle type="{{VEHICLE_TYPE}}">
+    <storeData>
+        <name>{{VEHICLE_DISPLAY_NAME}}</name>
+        <image>store/{{VEHICLE_NAME}}.png</image>
+        <price>{{PRICE}}</price>
+        <lifetime>600</lifetime>
+        <brand>{{BRAND}}</brand>
+        <category>{{CATEGORY}}</category>
+        <specs>
+            <power>{{POWER_HP}}</power>
+            <maxSpeed>{{MAX_SPEED}}</maxSpeed>
+        </specs>
+        <functions>
+            <function>$l10n_function_tractor</function>
+        </functions>
+    </storeData>
+
+    <base>
+        <filename>vehicles/{{VEHICLE_NAME}}.i3d</filename>
+        <typeDesc>$l10n_typeDesc_tractor</typeDesc>
+        <speedLimit value="{{MAX_SPEED}}" />
+        <components>
+            <component centerOfMass="0 0.8 0" mass="{{MASS_KG}}"
+                       solverIterationCount="30" />
+        </components>
+    </base>
+
+    <motorized>
+        <motorConfigurations>
+            <motorConfiguration name="{{POWER_HP}} HP">
+                <motor torqueScale="1.0"
+                       minRpm="800"
+                       maxRpm="2200"
+                       maxForwardSpeed="{{MAX_SPEED}}"
+                       maxBackwardSpeed="20"
+                       brakeForce="5"
+                       lowBrakeForceScale="0.4" />
+                <transmission name="6+6"
+                              autoGearChangeTime="0.5"
+                              gearChangeTime="0.3" />
+            </motorConfiguration>
+        </motorConfigurations>
+        <consumerConfigurations>
+            <consumerConfiguration>
+                <consumer fillType="DIESEL" usage="5" />
+            </consumerConfiguration>
+        </consumerConfigurations>
+        <exhaustParticleSystems>
+            <exhaustParticleSystem node="exhaustNode" />
+        </exhaustParticleSystems>
+    </motorized>
+
+    <drivable>
+        <steeringWheel node="steeringWheelNode" />
+    </drivable>
+
+    <enterable>
+        <cameras>
+            <camera node="indoorCamera" rotatable="true"
+                    isInside="true" fov="75" />
+            <camera node="outdoorCamera" rotatable="true"
+                    isInside="false" fov="60" />
+        </cameras>
+        <characterNode node="playerNode" />
+    </enterable>
+
+    <fillUnit>
+        <fillUnitConfigurations>
+            <fillUnitConfiguration>
+                <fillUnits>
+                    <fillUnit fillTypes="DIESEL DEF" capacity="400"
+                              showOnHud="true" />
+                </fillUnits>
+            </fillUnitConfiguration>
+        </fillUnitConfigurations>
+    </fillUnit>
+
+    <wheels autoRotateBackSpeed="1.0">
+        <wheel node="wheelFrontLeft" driveNode="wheelDriveFrontLeft"
+               radius="0.55" width="0.4" mass="0.2"
+               tireType="normal" hasTireTracks="true"
+               hasParticles="true" />
+        <wheel node="wheelFrontRight" driveNode="wheelDriveFrontRight"
+               radius="0.55" width="0.4" mass="0.2"
+               tireType="normal" hasTireTracks="true"
+               hasParticles="true" />
+        <wheel node="wheelRearLeft" driveNode="wheelDriveRearLeft"
+               radius="0.75" width="0.5" mass="0.3"
+               tireType="normal" hasTireTracks="true"
+               hasParticles="true" />
+        <wheel node="wheelRearRight" driveNode="wheelDriveRearRight"
+               radius="0.75" width="0.5" mass="0.3"
+               tireType="normal" hasTireTracks="true"
+               hasParticles="true" />
+    </wheels>
+
+    <attacherJoints>
+        <attacherJoint node="attacherRear" jointType="implement"
+                       rotLimitSpring="500 500 500"
+                       transLimitSpring="500 500 500" />
+        <attacherJoint node="attacherFront" jointType="implement"
+                       rotLimitSpring="500 500 500"
+                       transLimitSpring="500 500 500" />
+    </attacherJoints>
+
+    <powerTakeOffs>
+        <output node="ptoRearNode" />
+    </powerTakeOffs>
+
+    <lights>
+        <realLights>
+            <light node="headlightLeft" lightTypes="0" />
+            <light node="headlightRight" lightTypes="0" />
+            <light node="rearLightLeft" lightTypes="1" />
+            <light node="rearLightRight" lightTypes="1" />
+        </realLights>
+    </lights>
+
+    <i3dMappings>
+        <i3dMapping id="wheelFrontLeft" node="0>1|0" />
+        <i3dMapping id="wheelFrontRight" node="0>1|1" />
+        <i3dMapping id="wheelRearLeft" node="0>1|2" />
+        <i3dMapping id="wheelRearRight" node="0>1|3" />
+        <i3dMapping id="wheelDriveFrontLeft" node="0>1|0|0" />
+        <i3dMapping id="wheelDriveFrontRight" node="0>1|1|0" />
+        <i3dMapping id="wheelDriveRearLeft" node="0>1|2|0" />
+        <i3dMapping id="wheelDriveRearRight" node="0>1|3|0" />
+        <i3dMapping id="steeringWheelNode" node="0>2|0" />
+        <i3dMapping id="attacherRear" node="0>3|0" />
+        <i3dMapping id="attacherFront" node="0>3|1" />
+        <i3dMapping id="exhaustNode" node="0>4|0" />
+        <i3dMapping id="indoorCamera" node="0>5|0" />
+        <i3dMapping id="outdoorCamera" node="0>5|1" />
+        <i3dMapping id="playerNode" node="0>5|2" />
+        <i3dMapping id="ptoRearNode" node="0>6|0" />
+        <i3dMapping id="headlightLeft" node="0>7|0" />
+        <i3dMapping id="headlightRight" node="0>7|1" />
+        <i3dMapping id="rearLightLeft" node="0>7|2" />
+        <i3dMapping id="rearLightRight" node="0>7|3" />
+    </i3dMappings>
+</vehicle>

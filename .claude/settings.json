@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./tools/build.sh *)",
+      "Bash(zip *)",
+      "Bash(ls *)",
+      "Bash(mkdir *)"
+    ]
+  }
+}
